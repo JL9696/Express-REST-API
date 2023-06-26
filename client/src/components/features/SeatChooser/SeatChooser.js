@@ -13,7 +13,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const [socket, setSocket] = useState('');
   
   useEffect(() => {
-    const newSocket = io(process.env.PORT || "http://localhost:8000/");
+    const newSocket = io('ws://localhost:8000', { transports: ["websocket"] });
     dispatch(loadSeatsRequest());
     newSocket.on('seatsUpdated', seats => dispatch(loadSeats(seats)))
     setSocket(newSocket)

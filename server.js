@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const uuid = require('uuid').v4;
+const uuid = require('uuid');
 const router = express.Router();
 const app = express();
 const path = require('path');
@@ -43,6 +43,5 @@ const server = app.listen(process.env.PORT || 8000, () => {
 const io = socket(server);
 
 io.on('connection', (socket) => {
-  socket.on('New socket!');
-  console.console.log('new socket');
+  console.log('new socket', socket.id);
 })
