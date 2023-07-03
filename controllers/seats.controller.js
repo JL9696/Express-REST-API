@@ -1,4 +1,4 @@
-const Seat = require('../controllers/concerts.controller');
+const Seat = require('../models/seat.model');
 
 exports.getAll = async (req, res) => {
     try {

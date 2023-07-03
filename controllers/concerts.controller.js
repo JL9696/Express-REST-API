@@ -1,4 +1,4 @@
-const Concert = require('../models/concert.module');
+const Concert = require('../models/concert.model');
 
 exports.getAll = async (req, res) => {
     try {
