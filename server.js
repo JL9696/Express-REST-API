@@ -6,6 +6,7 @@ const router = express.Router();
 const app = express();
 const path = require('path');
 const socket = require('socket.io');
+const helmet = require('helmet');
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 
@@ -19,6 +20,7 @@ const testimonialRoutes = require('./routes/testimonials.routes.js');
 const concertsRoutes = require('./routes/concerts.routes.js');
 const seatsRoutes = require('./routes/seats.routes.js');
 
+app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
@@ -40,7 +42,7 @@ app.use((req, res) => {
 const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
-if(NODE_ENV === 'production') dbUri = 'mongodb+srv://JL9696:jl969696@cluster0.tyo8bw0.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+if(NODE_ENV === 'production') dbUri = 'mongodb+srv://JL9696:${process.env.DB_PASS}@cluster0.tyo8bw0.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
 else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDBtest';
 else dbUri = 'mongodb://localhost:27017/NewWaveDB';
 
